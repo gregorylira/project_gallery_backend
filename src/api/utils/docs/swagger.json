@@ -79,7 +79,7 @@
       "delete": {
         "summary": "Deletar imagem por id",
         "description": "essa rota sera responsavel por deletar imagens",
-        "tags": ["Imagem"],
+        "tags": ["Image"],
         "parameters": [
           {
             "name": "id",
