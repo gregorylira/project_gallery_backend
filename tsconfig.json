@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+       "lib": [
+          "es5",
+          "es6"
+       ],
+       "target": "es5",
+       "module": "commonjs",
+       "moduleResolution": "node",
+       "outDir": "./build",
+       "strict": false,
+       "esModuleInterop": true, 
+       "skipLibCheck": true,                           /* Skip type checking of declaration files. */
+       "forceConsistentCasingInFileNames": true,
+       "strictPropertyInitialization": false,
+       "emitDecoratorMetadata": true,
+       "experimentalDecorators": true,
+       "sourceMap": true,
+       "typeRoots": ["./src/@types"],
+       "resolveJsonModule": true,
+    }
+  }
