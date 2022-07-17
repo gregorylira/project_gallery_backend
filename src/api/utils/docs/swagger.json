@@ -11,7 +11,7 @@
   "version": "1.0.0",
   "servers": [
     {
-      "url": "https://uploadgallery.herokuapp.com"
+      "url": "https://uploadgallery.herokuapp.com/v1/"
     }
   ],
 
