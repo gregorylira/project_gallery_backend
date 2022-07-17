@@ -7,6 +7,7 @@ import "express-async-errors";
 import { swaggerDocs } from "../api/utils/swagger";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import path from "path";
 
 export default class ConfigServer {
   private server?: Server;
@@ -22,10 +23,10 @@ export default class ConfigServer {
   private setupServer() {
     const cors = require("cors");
     this.app.use(
-      cors({
-        origin: ["localhost", "26.100.58.57"],
-      })
+      "/files",
+      express.static(path.resolve(__dirname, "..", "..", "tmp", "uploads"))
     );
+    this.app.use(cors());
     // this.app.use(cors());
     this.app.use(express.json());
   }

@@ -12,9 +12,6 @@
   "servers": [
     {
       "url": "http://localhost:3002/v1"
-    },
-    {
-      "url": "http://26.100.58.57:3002/v1"
     }
   ],
 
