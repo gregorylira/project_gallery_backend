@@ -18,10 +18,13 @@ export default () => {
     multer(multerConfig).single("file"),
     async (req, res) => {
       const { originalname: name, size, key, location: url = "" } = req.file;
+      const { tag } = req.body;
+      if (!tag) throw new Error("Invalid tag passed to post");
       const post = await Post.create({
         name,
         size: size,
         key,
+        tag,
         url,
       });
 
