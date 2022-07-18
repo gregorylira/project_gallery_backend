@@ -12,6 +12,9 @@
   "servers": [
     {
       "url": "https://uploadgallery.herokuapp.com/v1/"
+    },
+    {
+      "url": "localhost:3002/v1/"
     }
   ],
 
