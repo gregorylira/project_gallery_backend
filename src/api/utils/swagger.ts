@@ -1,6 +1,7 @@
 import { Express, Request, Response } from "express";
 import swaggerUi from "swagger-ui-express";
-import swaggerdocs from "./docs/swagger.json";
+
+const swaggerdocs = require("./docs/swagger");
 
 export function swaggerDocs(app: Express, port: number) {
   // swagger page
