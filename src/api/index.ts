@@ -33,7 +33,7 @@ export default () => {
   );
 
   router.get("/posts", async (req, res) => {
-    const posts = await Post.find();
+    const posts = await Post.find().sort({ createdAt: -1 });
 
     return res.status(200).json(posts);
   });
