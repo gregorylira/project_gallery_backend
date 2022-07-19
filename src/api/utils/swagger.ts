@@ -1,6 +1,5 @@
 import { Express, Request, Response } from "express";
 const swaggerUi = require("swagger-ui-express");
-import swaggerConfig from "./docs/swaggerJson.json";
 
 import swaggerdocs from "./docs/swagger";
 
