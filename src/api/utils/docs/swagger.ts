@@ -19,7 +19,7 @@ const swaggerconfig = {
   version: "1.0.0",
   servers: [
     {
-      url: process.env.URL_APP,
+      url: process.env.URL_APP + "/v1/",
     },
     {
       url: "http://localhost:3002/v1/",
