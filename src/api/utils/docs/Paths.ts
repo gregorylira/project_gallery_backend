@@ -40,7 +40,13 @@ const paths = {
       summary: "Listagem de imagem",
       description: "essa rota sera responsavel por listar todas as imagem",
       tags: ["Image"],
-
+      parameters: [
+        {
+          name: "tag",
+          in: "query",
+          description: "nome da tag",
+        },
+      ],
       responses: {
         "401": {
           description: "Unauthorized",
