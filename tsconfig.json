@@ -18,5 +18,6 @@
        "sourceMap": true,
        "typeRoots": ["./src/@types"],
        "resolveJsonModule": true,
+       "downlevelIteration": true
     }
   }
