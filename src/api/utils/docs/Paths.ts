@@ -46,6 +46,11 @@ const paths = {
           in: "query",
           description: "nome da tag",
         },
+        {
+          name: "nsfw",
+          in: "query",
+          description: "booleano",
+        },
       ],
       responses: {
         "401": {

@@ -35,9 +35,9 @@ export default () => {
   router.get("/posts", async (req, res) => {
     const posts = await Post.find();
 
-    if (req.query.nfsw === "false") {
-      const noNfsw = posts.filter((e) => e.tag !== "nfsw");
-      return res.status(200).json(noNfsw);
+    if (req.query.nsfw === "false") {
+      const noNsfw = posts.filter((e) => e.tag !== "Nsfw");
+      return res.status(200).json(noNsfw);
     }
 
     if (req.query.tag) {
