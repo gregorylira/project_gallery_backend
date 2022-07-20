@@ -48,7 +48,7 @@ export default () => {
 
   router.get("/posts/tags", async (req, res) => {
     const posts = await Post.find();
-    const listRaw = posts.map((e) => e.tags);
+    const listRaw = posts.map((e) => e.tag);
     const unique = [...new Set(listRaw)];
 
     return res.status(200).json(unique);
