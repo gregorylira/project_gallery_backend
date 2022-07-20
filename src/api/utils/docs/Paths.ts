@@ -80,6 +80,28 @@ const paths = {
       },
     },
   },
+  "/api/posts/tags": {
+    get: {
+      summary: "Listagem de todas as tags",
+      description: "essa rota sera responsavel por listar todas as tags",
+      tags: ["Image"],
+
+      responses: {
+        "401": {
+          description: "Unauthorized",
+        },
+        "400": {
+          description: "Invalid tag post",
+        },
+        "200": {
+          description: "OK",
+          content: {
+            "application/json": {},
+          },
+        },
+      },
+    },
+  },
 };
 
 export default paths;
