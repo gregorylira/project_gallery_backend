@@ -33,18 +33,18 @@ export default () => {
   );
 
   router.get("/posts", async (req, res) => {
-    const posts = await Post.find();
-
     if (req.query.nsfw === "false") {
       const noNsfw = await Post.find({ tag: { $ne: "nsfw" } });
       return res.status(200).json(noNsfw);
     }
 
     if (req.query.tag) {
-      const postsFilter = posts.filter((e) => e.tag === req.query.tag);
+      const postsFilter = await Post.find({ tag: { $eq: req.query.tag } });
 
       return res.status(200).json(postsFilter);
     }
+
+    const posts = await Post.find();
 
     return res.status(200).json(posts);
   });
