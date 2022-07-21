@@ -37,7 +37,7 @@ export default () => {
       req.query.nsfw = "false";
     }
 
-    if (req.query.nsfw === "false") {
+    if (req.query.nsfw === "false" && !req.query.tag) {
       const noNsfw = await Post.find({ tag: { $ne: "nsfw" } });
       return res.status(200).json(noNsfw);
     }
