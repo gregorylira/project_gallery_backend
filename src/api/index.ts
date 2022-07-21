@@ -33,6 +33,10 @@ export default () => {
   );
 
   router.get("/posts", async (req, res) => {
+    if (!req.query.nsfw) {
+      req.query.nsfw = "false";
+    }
+
     if (req.query.nsfw === "false") {
       const noNsfw = await Post.find({ tag: { $ne: "nsfw" } });
       return res.status(200).json(noNsfw);
