@@ -45,7 +45,7 @@ export default () => {
       const noNsfw = await Post.find({ tag: { $ne: "nsfw" } })
         .sort({ createdAt: -1 })
         .skip(pagination * offset)
-        .limit(offset);
+        .limit(offset + 1);
       return res.status(200).json(noNsfw);
     }
 
@@ -53,7 +53,7 @@ export default () => {
       const postsFilter = await Post.find({ tag: { $eq: req.query.tag } })
         .sort({ createdAt: -1 })
         .skip(pagination * offset)
-        .limit(offset);
+        .limit(offset + 1);
 
       return res.status(200).json(postsFilter);
     }
@@ -61,7 +61,7 @@ export default () => {
     const posts = await Post.find()
       .sort({ createdAt: -1 })
       .skip(pagination * offset)
-      .limit(offset);
+      .limit(offset + 1);
 
     return res.status(200).json(posts);
   });
