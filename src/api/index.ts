@@ -33,17 +33,25 @@ export default () => {
   );
 
   router.get("/posts", async (req, res) => {
+    const page = req.query.page;
+    const pagination = Number(page) || 0;
+    const offset = 20;
+
     if (!req.query.nsfw) {
       req.query.nsfw = "false";
     }
 
-    if (req.query.nsfw === "false" && !req.query.tag) {
-      const noNsfw = await Post.find({ tag: { $ne: "nsfw" } });
+    if (req.query.nsfw === "false" && !req.query.tag && page) {
+      const noNsfw = await Post.find({ tag: { $ne: "nsfw" } })
+        .skip(pagination * offset)
+        .limit(offset + 1);
       return res.status(200).json(noNsfw);
     }
 
-    if (req.query.tag) {
-      const postsFilter = await Post.find({ tag: { $eq: req.query.tag } });
+    if (req.query.tag && page) {
+      const postsFilter = await Post.find({ tag: { $eq: req.query.tag } })
+        .skip(pagination * offset)
+        .limit(offset + 1);
 
       return res.status(200).json(postsFilter);
     }

@@ -51,6 +51,11 @@ const paths = {
           in: "query",
           description: "booleano",
         },
+        {
+          name: "page",
+          in: "query",
+          description: "booleano",
+        },
       ],
       responses: {
         "401": {
