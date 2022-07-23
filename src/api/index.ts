@@ -41,7 +41,7 @@ export default () => {
       req.query.nsfw = "false";
     }
 
-    if (req.query.nsfw === "false" && !req.query.tag && page) {
+    if (req.query.nsfw === "false" && !req.query.tag) {
       const noNsfw = await Post.find({ tag: { $ne: "nsfw" } })
         .sort({ createdAt: 1 })
         .skip(pagination * offset)
@@ -49,7 +49,7 @@ export default () => {
       return res.status(200).json(noNsfw);
     }
 
-    if (req.query.tag && page) {
+    if (req.query.tag) {
       const postsFilter = await Post.find({ tag: { $eq: req.query.tag } })
         .sort({ createdAt: 1 })
         .skip(pagination * offset)
