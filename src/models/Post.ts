@@ -12,7 +12,7 @@ const PostSchema = new mongoose.Schema({
   size: Number,
   key: String,
   url: String,
-  tag: String,
+  tag: [String],
   createdAt: {
     type: Date,
     default: Date.now(),
