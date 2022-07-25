@@ -73,7 +73,7 @@ export default () => {
         }
       } catch (error) {}
 
-      const postsFilter = await Post.find({ tag: { $eq: req.query.tag } })
+      const postsFilter = await Post.find({ tag: { $all: req.query.tag } })
         .sort({ createdAt: -1 })
         .skip(pagination * offset)
         .limit(offset + 1);
