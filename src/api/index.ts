@@ -4,7 +4,7 @@ import Post from "../models/Post";
 
 import multer from "multer";
 import Tags from "../models/Tags";
-import { verifyTags } from "../service/verifyTags";
+import { addTags, deleteTags } from "../service/verifyTags";
 
 export default () => {
   const router = Router();
@@ -91,24 +91,33 @@ export default () => {
 
   router.delete("/posts/:id", async (req, res) => {
     const post = await Post.findById(req.params.id);
-    const tags = await Tags.find();
-    let listatags = tags[0].tags;
 
-    post.tag.forEach(async (tag) => {
-      const test = await verifyTags(tag);
-
-      if (test) {
-      } else {
-        listatags = listatags.filter((tagf) => tagf !== tag);
-        await Tags.findByIdAndUpdate(tags[0]._id, {
-          tags: listatags,
-        });
-      }
-    });
+    await deleteTags(post.tag);
 
     await post.remove();
 
     return res.send();
+  });
+
+  router.put("/posts/:id", async (req, res) => {
+    const post = await Post.findById(req.params.id);
+
+    const _body = req.body.tag;
+    const tagBody = _body.split(" ");
+
+    const filter_delete = post.tag.filter((tag) => !tagBody.includes(tag));
+    await deleteTags(filter_delete);
+
+    const filter = post.tag.filter((tag) => tagBody.includes(tag));
+    const newTag = tagBody.filter((tagf) => !filter.includes(tagf));
+    await addTags(newTag);
+
+    await Post.findByIdAndUpdate(req.params.id, {
+      tag: tagBody,
+    });
+    const postedit = await Post.findById(req.params.id);
+
+    return res.status(200).json(postedit);
   });
 
   router.get("/posts/tags", async (req, res) => {
