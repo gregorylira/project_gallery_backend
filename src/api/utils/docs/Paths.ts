@@ -118,6 +118,29 @@ const paths = {
       },
     },
   },
+  "/api/posts/find/{id}": {
+    get: {
+      summary: "procurar imagem por id",
+      description: "essa rota sera responsavel por pegar imagens",
+      tags: ["Image"],
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          description: "id da imagem",
+          require: true,
+        },
+      ],
+      responses: {
+        "400": {
+          description: "Imagem não foi encontrada",
+        },
+        "200": {
+          description: "OK",
+        },
+      },
+    },
+  },
 };
 
 export default paths;

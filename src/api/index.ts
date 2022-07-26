@@ -126,5 +126,11 @@ export default () => {
     return res.status(200).json(posts[0].tags);
   });
 
+  router.get("/posts/find/:id", async (req, res) => {
+    const post = await Post.findById(req.params.id);
+
+    return res.status(200).json(post);
+  });
+
   return router;
 };
