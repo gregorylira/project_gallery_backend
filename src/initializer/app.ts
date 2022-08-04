@@ -1,18 +1,20 @@
-import "reflect-metadata";
-import express, { NextFunction, Request, Response } from "express";
-import { Server } from "http";
-import routes from "../api";
-import config from "../config";
-import "express-async-errors";
-import { swaggerDocs } from "../api/utils/swagger";
-import mongoose from "mongoose";
-import morgan from "morgan";
-import path from "path";
+import 'express-async-errors';
+import mongoose from 'mongoose';
+import config from '../config';
+import express, { NextFunction, Request, Response } from 'express';
+import { Server } from 'http';
+import routes from '../api';
+import { swaggerDocs } from '../api/utils/swagger';
+import path from 'path';
+import 'reflect-metadata';
 
 export default class ConfigServer {
   private server?: Server;
 
-  constructor(private port = config.port_server, public app = express()) {}
+  constructor(
+    private port = config.port_server,
+    public app = express()
+  ) {}
 
   public async init() {
     this.setupServer();
@@ -21,25 +23,26 @@ export default class ConfigServer {
   }
 
   private setupServer() {
-    const cors = require("cors");
+    const cors = require('cors');
     this.app.use(
-      "/files",
-      express.static(path.resolve(__dirname, "..", "..", "tmp", "uploads"))
+      '/files',
+      express.static(
+        path.resolve(__dirname, '..', '..', 'tmp', 'uploads')
+      )
     );
     this.app.use(cors());
-    // this.app.use(cors());
     this.app.use(express.json());
   }
 
   private async setupDatabase() {
     if (process.env.MONGO_URL)
       await mongoose.connect(process.env.MONGO_URL).then(() => {
-        console.log("connected to database");
+        console.log('connected to database');
       });
   }
 
   private setupRoutes() {
-    this.app.use("/v1/api", routes());
+    this.app.use('/v1/api', routes());
     this.app.use(
       (
         err: Error,
@@ -54,8 +57,8 @@ export default class ConfigServer {
         }
 
         return response.status(500).json({
-          status: "error",
-          message: "Internal Server Error",
+          status: 'error',
+          message: 'Internal Server Error',
         });
       }
     );

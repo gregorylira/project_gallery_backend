@@ -1,11 +1,11 @@
-import multer from "multer";
-import path from "path";
-import crypto from "crypto";
-import aws from "aws-sdk";
-import multerS3 from "multer-s3";
-import env from "../config";
+import aws from 'aws-sdk';
+import crypto from 'crypto';
+import dotenv from 'dotenv';
+import multer from 'multer';
+import multerS3 from 'multer-s3';
+import path from 'path';
 
-import dotenv from "dotenv";
+import env from '../config';
 
 dotenv.config();
 
@@ -16,7 +16,9 @@ const storageTypes = {
     },
     filename: (req, file, cb) => {
       crypto.randomBytes(16, (err, hash) => {
-        if (err) cb(err);
+        if (err){
+          cb(err);
+        }
 
         file.key = `${hash.toString("hex")}-${file.originalname}`;
 

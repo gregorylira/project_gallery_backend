@@ -1,4 +1,4 @@
-import ConfigServer from "./initializer/app";
+import ConfigServer from './initializer/app';
 
 export const __baseDir = __dirname;
 
